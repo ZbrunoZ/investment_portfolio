@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
-import { Card } from 'semantic-ui-react';
+import { Card, Icon, SemanticICONS } from 'semantic-ui-react';
+import inflacao from './imagens/inflacao.jpg';
+import prefixado from './imagens/prefixado.jpg';
+import selic from './imagens/selic.jpg';
 
 interface IProps {}
 interface IState {
   data: any[];
   value: string;
+  hoveredCardId: string | null;
+}
+
+interface Imagens {
+  [key: string]: string;
 }
 
 class CardNovo extends Component<IProps, IState> {
@@ -13,6 +21,7 @@ class CardNovo extends Component<IProps, IState> {
     this.state = {
       data: [],
       value: '',
+      hoveredCardId: null,
     };
   }
 
@@ -29,20 +38,64 @@ class CardNovo extends Component<IProps, IState> {
     });
   }
 
+  private getImagemByNomeFiltro(nomeFiltro: string): string {
+    const imagens: Imagens = {
+      inflacao,
+      prefixado,
+      selic,
+    };
+
+    return imagens[nomeFiltro] || '';
+  }
+
+  private handleMouseEnter = (cardId: string): void => {
+    this.setState({
+      hoveredCardId: cardId,
+    });
+  };
+
+  private handleMouseLeave = (): void => {
+    this.setState({
+      hoveredCardId: null,
+    });
+  };
+
   public render(): JSX.Element {
-    const { data } = this.state;
+    const { data, hoveredCardId } = this.state;
 
     return (
       <Card.Group centered>
-        {data.map((card: any, index: number) => (
-          <Card
-            key={card._id} 
-            href={`http://localhost:3000/${card.nomeFiltro}`}
-            header={card.nomePortfolio}
-            description={card.descricao}
-            meta={`Rentabilidade ${card.rentabilidade12Meses}%`}
-          />
-        ))}
+        {data.map((card: any, index: number) => {
+          let icon: SemanticICONS | undefined = undefined;
+
+          if (card.nomeFiltro === 'inflacao') {
+            icon = 'file alternate outline';
+          } else if (card.nomeFiltro === 'prefixado') {
+            icon = 'chart bar';
+          } else if (card.nomeFiltro === 'selic') {
+            icon = 'money bill alternate outline';
+          }
+
+          return (
+            <Card
+              key={card._id}
+              href={`http://localhost:3000/${card.nomeFiltro}`}
+              image={this.getImagemByNomeFiltro(card.nomeFiltro)}
+              header={card.nomePortfolio}
+              meta={
+                <span style={{ color: 'black' }}>
+                  {`Rentabilidade:    `}
+                  {icon && <Icon name={icon} color="green" />}
+                  <span style={{ color: 'green' }}>{`${card.rentabilidade12Meses} %`}</span>
+                </span>
+              }
+              description={hoveredCardId === card._id ? card.descricao : ''}
+              onMouseEnter={() => this.handleMouseEnter(card._id)}
+              onMouseLeave={this.handleMouseLeave}
+              style={{ cursor: 'pointer', border: hoveredCardId === card._id ? '2px solid #007bff' : 'none' }}
+            />
+          );
+        })}
       </Card.Group>
     );
   }
