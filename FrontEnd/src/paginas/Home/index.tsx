@@ -1,6 +1,5 @@
 import CardNovo from "./CardNovo";
-import TextoInicio from "./TextoInicio";
-
+import Banner from "../PaginaBase/Banner";
 
 const Home = () => {
    
@@ -8,7 +7,7 @@ const Home = () => {
     return (<section className="portfolios">
         <section>
         <div>
-        <TextoInicio></TextoInicio>
+        <Banner Titulo="Já sabe por onde começar a investir?" Subtitulo="Encontre o produto que você precisa" TituloCorpo='PORTFÓLIOS CARTEIRA ANBIMA'/>
         </div>
         <CardNovo></CardNovo>
         <script src="https://cdn.jsdelivr.net/npm/semantic-ui-react/dist/umd/semantic-ui-react.min.js"></script>

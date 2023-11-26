@@ -16,11 +16,13 @@ const LogoImagem = styled.img`
 function Logo() {
     return (
         <LogoContainer>
-            <LogoImagem 
-                src={logo}
-                alt="logo"
-                className="logo-img"
-            ></LogoImagem>
+            <a href="/">
+                <LogoImagem 
+                    src={logo}
+                    alt="logo"
+                    className="logo-img"
+                ></LogoImagem>
+            </a>
             <p><strong>ETHEREUM</strong> Asset</p>
         </LogoContainer>
     )

@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Banner from '../PaginaBase/Banner';
+import Formulario from "../../componentes/Formulario"
+import "./Selic.css"
+
 
 interface Data {
     _id: number;
@@ -10,6 +14,7 @@ interface Data {
     rentabilidade60Meses: number;
     valorInicial: number;
     descricao: string;
+  
 
   }
 
@@ -30,22 +35,27 @@ const Selic = () => {
   const filteredData = data.filter(item => item._id === 3);
 
   return (
-    <div>
-      <h1>Dados do portfólio Selic</h1>
-      <ul>
+    <><><div>
+      <Banner Titulo="Portfólio Selic para você ficar tranquilo enquanto seu dinheiro rende" Subtitulo="Veja os detalhes do portfólio" TituloCorpo='PORTFÓLIO SELIC' />
+    </div>
+    <div></div>
+      <h1>Carteira IMA-S</h1><ul className='dados-portfolio'>
         {filteredData.map(item => (
-          <li key={item._id}>
-          <li> {item.nomePortfolio}</li> 
-          <li> {item.descricao}</li> 
-          <li> {item.indice}</li> 
-          <li> {item.rentabilidade12Meses} </li> 
-          <li> {item.rentabilidade60Meses}</li> 
-          <li> {item.valorInicial}</li> 
+          <li key={item._id} className='lista'>
+            <li><p>Nome do portfólio: {item.nomePortfolio}</p></li>
+            <li> <p>Descrição: {item.descricao}</p></li>
+            <li> <p>Índice ANBIMA: {item.indice}</p></li>
+            <li> <p>Rentabilidade dos últimos 12 meses:{item.rentabilidade12Meses}</p> </li>
+            <li> <p>Rentabilidade dos últimos 60 meses:{item.rentabilidade60Meses}</p></li>
+            <li> <p>Valor mínimo de aplicação:{item.valorInicial}</p></li>
+            <div className='form-frame'><Formulario></Formulario></div>
           </li>
         ))}
-      </ul>
-    </div>
+      </ul></><div></div></>
   );
 }
 
 export default Selic
+
+  
+

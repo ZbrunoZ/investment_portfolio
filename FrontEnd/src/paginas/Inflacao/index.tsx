@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Banner from '../PaginaBase/Banner';
 
 interface Data {
     _id: number;
@@ -30,21 +31,21 @@ const Inflacao = () => {
   const filteredData = data.filter(item => item._id === 1);
 
   return (
-    <div>
-      <h1>Dados do portfólio Inflação</h1>
-      <ul>
+    <><div>
+      <Banner Titulo="Portfólio Inflação você se protege da desvalorização do seu dinheiro" Subtitulo="Veja os detalhes do portfólio" TituloCorpo='PORTFÓLIO INFLAÇÃO' />
+    </div>
+    <h1>Dados do portfólio Selic</h1><ul>
         {filteredData.map(item => (
           <li key={item._id}>
-          <li> {item.nomePortfolio}</li> 
-          <li> {item.descricao}</li> 
-          <li> {item.indice}</li> 
-          <li> {item.rentabilidade12Meses} </li> 
-          <li> {item.rentabilidade60Meses}</li> 
-          <li> {item.valorInicial}</li> 
+            <li> {item.nomePortfolio}</li>
+            <li> {item.descricao}</li>
+            <li> {item.indice}</li>
+            <li> {item.rentabilidade12Meses} </li>
+            <li> {item.rentabilidade60Meses}</li>
+            <li> {item.valorInicial}</li>
           </li>
         ))}
-      </ul>
-    </div>
+      </ul></>
   );
 }
 
