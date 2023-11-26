@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Icon, SemanticICONS } from 'semantic-ui-react';
+import { Card, Icon, SemanticICONS, Button } from 'semantic-ui-react';
 import inflacao from './imagens/inflacao.jpg';
 import prefixado from './imagens/prefixado.jpg';
 import selic from './imagens/selic.jpg';
@@ -79,7 +79,6 @@ class CardNovo extends Component<IProps, IState> {
           return (
             <Card
               key={card._id}
-              href={`http://localhost:3000/${card.nomeFiltro}`}
               image={this.getImagemByNomeFiltro(card.nomeFiltro)}
               header={card.nomePortfolio}
               meta={
@@ -89,10 +88,19 @@ class CardNovo extends Component<IProps, IState> {
                   <span style={{ color: 'green' }}>{`${card.rentabilidade12Meses} %`}</span>
                 </span>
               }
+              extra={
+                    <Button primary>
+                      <a href={`http://localhost:3000/${card.nomeFiltro}`}
+                        style={{ color: 'white' }}>
+                          Invista agora
+                      </a>
+                    </Button>
+              }
               description={hoveredCardId === card._id ? card.descricao : ''}
               onMouseEnter={() => this.handleMouseEnter(card._id)}
               onMouseLeave={this.handleMouseLeave}
-              style={{ cursor: 'pointer', border: hoveredCardId === card._id ? '2px solid #007bff' : 'none' }}
+              style={{ cursor: 'pointer', 
+                       border: hoveredCardId === card._id ? '2px solid #007bff' : 'none' }}
             />
           );
         })}
