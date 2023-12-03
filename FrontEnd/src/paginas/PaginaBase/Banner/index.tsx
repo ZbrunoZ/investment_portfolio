@@ -22,18 +22,16 @@ const Subtitulo = styled.h2`
     margin-bottom: 40px;
 
 `
-
 const TituloCorpo = styled.h4`
     font-size: 32px;
     text-align: center;
     color: #EB9B00;
-    margin: 16px 0;
 `
 const CorpoContainer = styled.section`
     color: #FFF;
     text-align: center;
     padding: 85px 0;
-    height: 270px;
+    height: 20px;
     width: 100%;
     `
 

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Card, Form, Button } from 'react-bootstrap';
+import { Modal} from 'react-bootstrap';
 import "./Formulario.css"
+import CurrencyInput from 'react-currency-input-field';
 
 export {};
-
 
 
 
@@ -19,7 +20,6 @@ function CustomCard() {
     console.log('Aplicação cancelada');
   };
 
- 
 
   return (
     <Card className='card'>
@@ -27,10 +27,12 @@ function CustomCard() {
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formValue">
             <Form.Label className='label'>Valor da Aplicação:</Form.Label>
-            <Form.Control
-              type="text"
+            <CurrencyInput className='currency'
               placeholder="Informe o valor"
-              value={value}
+              decimalsLimit={2}
+              prefix='R$'
+              decimalSeparator=','
+              groupSeparator='.'
               onChange={(event) => setValue(event.target.value)}
             />
           </Form.Group>

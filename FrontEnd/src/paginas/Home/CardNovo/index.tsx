@@ -77,7 +77,7 @@ class CardNovo extends Component<IProps, IState> {
           }
 
           return (
-            <Card
+            <Card className='ui.card'
               key={card._id}
               image={this.getImagemByNomeFiltro(card.nomeFiltro)}
               header={card.nomePortfolio}

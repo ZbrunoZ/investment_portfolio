@@ -23,7 +23,7 @@ function Logo() {
                     className="logo-img"
                 ></LogoImagem>
             </a>
-            <p><strong>ETHEREUM</strong> Asset</p>
+            <p>ETHEREUM Asset</p>
         </LogoContainer>
     )
 }
